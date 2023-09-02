@@ -1,11 +1,8 @@
-// import { useState } from "react";
-
-import { Tabs } from "antd";
+import { Image, Tabs } from "antd";
 import TextTypeGenerator from "./components/TextTypeGenerator";
 import ElementStyleGenerator from "./components/ElementStyleGenerator";
 import ColorTypeGenerator from "./components/ColorTypeGenerator";
-
-// const creatorOptions = ["Root", "text", "button"];
+import Logo from "./assets/Logo.png";
 
 const items = [
   {
@@ -27,9 +24,12 @@ const items = [
 
 function App() {
   return (
-    <div className="max-w-6xl mx-auto px-12 py-4 mt-4 bg-zinc-100">
-      <Tabs defaultActiveKey="1" items={items} />
-    </div>
+    <>
+      <Image width={100} src={Logo} className="absolute" />
+      <div className="max-w-6xl mx-auto px-12 py-4 mt-4 bg-zinc-100">
+        <Tabs defaultActiveKey="1" items={items} />
+      </div>
+    </>
   );
 }
 
