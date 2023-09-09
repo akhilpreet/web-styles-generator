@@ -36,3 +36,18 @@ export const fontWeightOptions = [
     label: 900,
   },
 ];
+
+export const elementTypeOptions = [
+  {
+    value: "button",
+    label: "button",
+  },
+  {
+    value: "input",
+    label: "input",
+  },
+  {
+    value: "container",
+    label: "container",
+  },
+];

@@ -1,12 +1,20 @@
 import { Button, ColorPicker, Input } from "antd";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppContext";
 
 const ColorTypeGenerator = () => {
+  const { updateColors } = useContext(AppContext);
   const [colors, setColors] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     color: "#ccc",
   });
+
+  useEffect(() => {
+    if (colors.length) {
+      updateColors(colors);
+    }
+  }, [colors, updateColors]);
 
   const inputChange = (e, name) => {
     if (!name) {
@@ -25,8 +33,6 @@ const ColorTypeGenerator = () => {
       return type.filter((item) => item.id !== id);
     });
   };
-
-  console.log("colors", colors);
 
   return (
     <div className="flex flex-col gap-8">
