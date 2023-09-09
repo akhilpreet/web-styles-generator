@@ -1,23 +1,34 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 export const AppContext = createContext({
-  rootStyle: {},
-  updateRootStyling: () => null,
+  colors: [],
+  textTypes: [],
+  updateColors: () => null,
+  updateTextTypes: () => null,
 });
 
-const AppContextProvider = () => {
-  const [rootStyle, setRootStyle] = useState({});
+const AppContextProvider = ({ children }) => {
+  const [colors, setColors] = useState([]);
+  const [textTypes, setTextTypes] = useState([]);
 
-  const updateRootStyling = (styles) => {
-    setRootStyle((perv) => {
-      return { ...perv, ...styles };
+  const updateColors = useCallback((styles) => {
+    setColors((perv) => {
+      return [...styles];
     });
-  };
+  }, []);
+
+  const updateTextTypes = useCallback((styles) => {
+    setTextTypes((perv) => {
+      return [...styles];
+    });
+  }, []);
 
   return (
     <AppContext.Provider
-      value={(rootStyle, updateRootStyling)}
-    ></AppContext.Provider>
+      value={{ colors, textTypes, updateColors, updateTextTypes }}
+    >
+      {children}
+    </AppContext.Provider>
   );
 };
 

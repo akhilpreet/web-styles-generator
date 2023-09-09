@@ -1,11 +1,13 @@
 import { Button, Input, InputNumber, Select } from "antd";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import WebFont from "webfontloader";
 import { fontWeightOptions } from "../Contants";
+import { AppContext } from "../context/AppContext";
 
 const { TextArea } = Input;
 
 const TextTypeGenerator = () => {
+  const { updateTextTypes } = useContext(AppContext);
   const [sampleText, setSampleText] = useState("");
   const [textTypes, setTextTypes] = useState([]);
   const [formData, setFormData] = useState({
@@ -16,6 +18,12 @@ const TextTypeGenerator = () => {
     letterSpacing: 1,
     fontWeight: 400,
   });
+
+  useEffect(() => {
+    if ((textTypes.length, updateTextTypes)) {
+      updateTextTypes(textTypes);
+    }
+  }, [textTypes, updateTextTypes]);
 
   const inputChange = (e, name) => {
     if (!name) {
